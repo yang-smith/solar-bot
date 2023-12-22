@@ -59,7 +59,7 @@ def extract_event_details(json_data):
 
     event_details_str = (
         "群公告\n"
-        "👾12月22日瓦猫活动推荐！\n"
+        "👾今日瓦猫活动推荐！\n"
         "活动报名与签到请在Social Layer平台https://app.sola.day/event/\n\n"
     )
 
