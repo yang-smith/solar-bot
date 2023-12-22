@@ -1,0 +1,7 @@
+python-dotenv
+python-telegram-bot
+langchain == 0.0.315
+openai  == 0.28.1
+beautifulsoup4  == 4.12.2
+tiktoken    ==    0.5.1
+apscheduler
