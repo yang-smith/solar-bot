@@ -98,13 +98,22 @@ def extract_event_details(json_data):
 
 import asyncio
 from datetime import datetime, timedelta
+import pytz
 async def events():
-    today = datetime.now()
-    start_of_today = datetime(today.year, today.month, today.day)
-    end_of_today = start_of_today + timedelta(days=1) - timedelta(seconds=1)
-    
-    start_time = start_of_today.strftime("%Y-%m-%dT%H:%M:%S")
-    end_time = end_of_today.strftime("%Y-%m-%dT%H:%M:%S")
+    # 定义美国西海岸和泰国的时区
+    us_western_time_zone = pytz.timezone('America/Los_Angeles')
+    thailand_time_zone = pytz.timezone('Asia/Bangkok')
+
+    now_in_us_western = datetime.now(us_western_time_zone)
+    # print(now_in_us_western)
+    now_in_thailand = now_in_us_western.astimezone(thailand_time_zone)
+    # print(now_in_thailand)
+    start_of_today_in_thailand = thailand_time_zone.localize(datetime(now_in_thailand.year, now_in_thailand.month, now_in_thailand.day))
+    end_of_today_in_thailand = start_of_today_in_thailand + timedelta(days=1) - timedelta(seconds=1)
+
+    start_time = start_of_today_in_thailand.strftime("%Y-%m-%dT%H:%M:%S")
+    end_time = end_of_today_in_thailand.strftime("%Y-%m-%dT%H:%M:%S")
+
     data = {
       "query": f"""
       {{
